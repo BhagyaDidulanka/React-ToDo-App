@@ -6,7 +6,11 @@ import './App.css';
 
 
 function App() {
-  const[taskList,setTasklist]=useState(JSON.parse(localStorage.getItem("taskList")) || []);
+  
+  const [taskList, setTasklist] = useState(() => {
+    const savedTasks = localStorage.getItem('taskList');
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
   
   const[task,setTask]=useState({});
 
