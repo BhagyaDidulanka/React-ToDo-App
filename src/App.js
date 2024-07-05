@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { AddTask } from './components/AddTask';
 import { ShowTask } from './components/ShowTask';
 import { Header } from './components/Header';
@@ -6,8 +6,13 @@ import './App.css';
 
 
 function App() {
-  const[taskList,setTasklist]=useState([]);
+  const[taskList,setTasklist]=useState(JSON.parse(localStorage.getItem("taskList")) || []);
+  
   const[task,setTask]=useState({});
+
+  useEffect(() => {
+    localStorage.setItem('taskList', JSON.stringify(taskList));
+  }, [taskList]);
 
   return (
     <div className="App">
